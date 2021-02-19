@@ -13,7 +13,7 @@ DIR_REPO = DIR_SRC.parent.resolve()
 SECRET_KEY = _ds.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = _ds.MODE_DEBUG
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
