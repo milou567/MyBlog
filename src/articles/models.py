@@ -1,5 +1,6 @@
 import datetime
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -16,6 +17,7 @@ class Article(models.Model):
     art_image = models.ImageField("Изображение", upload_to="articles/")
     url = models.SlugField(max_length=130, null=True)
     draft = models.BooleanField("черновик", default=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.title} - {self.content[:30]}"
