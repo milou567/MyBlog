@@ -10,4 +10,5 @@ urlpatterns = [
         name="detail_article",
     ),
     path("review/<int:pk>/", views.AddReview.as_view(), name="add_review"),
+    path("search/", views.Search.as_view(), name="search"),
 ]

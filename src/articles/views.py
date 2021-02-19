@@ -40,3 +40,14 @@ class AddReview(View):
             form.article = article
             form.save()
         return redirect(article.get_absolute_url())
+
+
+class Search(ListView):
+    """Поиск постов"""
+
+    model = Article
+    template_name = "articles/index.html"
+    context_object_name = "articles"
+
+    def get_queryset(self):
+        return Article.objects.filter(title__icontains=self.request.GET.get("q"))

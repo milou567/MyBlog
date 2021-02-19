@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 import dj_database_url
 from dynaconf import settings as _ds
 
@@ -19,7 +20,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     _ds.HOST,
-    ]
+]
 
 
 # Application definition
@@ -128,4 +129,3 @@ if not DEBUG:
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
