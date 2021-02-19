@@ -17,6 +17,7 @@ whitenoise = "*"
 cloudinary = "*"
 djangorestframework = "*"
 django-cloudinary-storage = "*"
+gunicorn = "*"
 
 [dev-packages]
 
