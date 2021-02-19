@@ -123,5 +123,6 @@ STATIC_ROOT = DIR_REPO / ".static"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
 if not DEBUG:
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
