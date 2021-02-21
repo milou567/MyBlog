@@ -32,7 +32,6 @@ class AddReview(View):
     """Отзывы"""
 
     def post(self, request, pk):
-        print(request.POST)
         form = ReviewForm(request.POST)
         article = Article.objects.get(id=pk)
         if form.is_valid():
