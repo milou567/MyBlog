@@ -28,6 +28,9 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse("detail_article", kwargs={"slug": self.url})
 
+    def get_review(self):
+        return self.review_set.filter(parent__isnull=True)
+
     class Meta:
         verbose_name = "Статья"
         verbose_name_plural = "Статьи"
