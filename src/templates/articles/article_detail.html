@@ -301,7 +301,7 @@
                     </div>
                     {% for review in article.get_review %}
                     <div class="media py-5">
-                        <img src="{% static 'images/pic/te1.jpg' %}" class="mr-3 img-fluid" alt="image">
+                        <img src="{% static 'images/pic/te1.jpg' %}" class="mr-3 img-circle" alt="image">
                         <div class="media-body mt-4">
                             <h5 class="mt-0 editContent">
                                 {{ review.name }}
@@ -312,9 +312,9 @@
                             <a href="#formReview"
                                onclick="addReview('{{ review.name }}', '{{ review.id }}')">Ответить</a>
                             {% for rew in review.review_set.all %}
-                            <div class="media mt-5 editContent">
+                            <div class="media mt-5 editContent-1">
                                 <a class="pr-3" href="#">
-                                    <img src="{% static 'images/pic/te2.jpg' %}" class="img-fluid "
+                                    <img src="{% static 'images/pic/te2.jpg' %}" class="img-circle"
                                          alt="image">
                                 </a>
                                 <div class="media-body">

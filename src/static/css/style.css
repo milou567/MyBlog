@@ -118,6 +118,10 @@ button {
     padding: 30px;
 }
 
+.editContent-1 {
+    margin-left: 100px;
+}
+
 .sub-title h2 {
     display: inline-block;
     font-size: 25px;
@@ -638,7 +642,6 @@ div.blog-post {
 
 .blog-post p {
     font-size: 16px;
-    line-height: 30px;
     color: #696868;
     font-weight: 300;
     letter-spacing: 0.8px;
@@ -777,7 +780,9 @@ blockquote {
     cursor: cell;
 }
 
-
+.img-circle {
+  border-radius: 50%;
+}
 
 /* End Box (Popup When Scroll Down) */
 
