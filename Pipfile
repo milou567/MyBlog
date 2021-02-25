@@ -18,6 +18,7 @@ cloudinary = "*"
 djangorestframework = "*"
 django-cloudinary-storage = "*"
 gunicorn = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

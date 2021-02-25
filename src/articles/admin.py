@@ -1,9 +1,18 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
+from django import forms
 from articles.models import Article
 from articles.models import Review
 
+
+class ArticleAdminForm(forms.ModelForm):
+    """Форма с виджетом ckeditor"""
+    content = forms.CharField(label="Текст статьи", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Article
+        fields = '__all__'
 
 class ReviewInline(admin.TabularInline):
     """Отзывы на странице публикации"""
@@ -21,6 +30,7 @@ class ArticleAdmin(admin.ModelAdmin):
     save_on_top = True
     save_as = True
     list_editable = ("draft",)
+    form = ArticleAdminForm
     readonly_fields = ("get_image",)
 
     def get_image(self, obj):

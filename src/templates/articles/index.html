@@ -29,6 +29,7 @@
         <div class="post-info">
             <span>{{ article.pub_date }} / by <a href="#" target="_blank">{{ article.author }}</a></span>
         </div>
+        <p>{{article.content|safe}}</p>
         <a href="{{ article.get_absolute_url }}"
            class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
     </div>
