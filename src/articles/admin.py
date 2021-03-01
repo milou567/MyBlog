@@ -27,6 +27,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ("title", "content", "author", "draft", "get_image")
     search_fields = ("title",)
     inlines = [ReviewInline]
+    actions = ["publish", "unpublish"]
     save_on_top = True
     save_as = True
     list_editable = ("draft",)
@@ -37,6 +38,30 @@ class ArticleAdmin(admin.ModelAdmin):
         return mark_safe(f'<img src={obj.art_image.url} width="50" height="60"')
 
     get_image.short_description = "Изображение"
+
+    def unpublish(self, request, queryset):
+        """Снять с публикации"""
+        row_update = queryset.update(draft=True)
+        if row_update == 1:
+            message_bit = "1 запись была обновлена"
+        else:
+            message_bit = f"{row_update} записей были обновлены"
+        self.message_user(request, f"{message_bit}")
+
+    def publish(self, request, queryset):
+        """Опубликовать"""
+        row_update = queryset.update(draft=False)
+        if row_update == 1:
+            message_bit = "1 запись была обновлена"
+        else:
+            message_bit = f"{row_update} записей были обновлены"
+        self.message_user(request, f"{message_bit}")
+
+    publish.short_description = "Опубликовать"
+    publish.allowed_permissions = ('change',)
+
+    unpublish.short_description = "Снять с публикации"
+    unpublish.allowed_permissions = ('change',)
 
 
 @admin.register(Review)
