@@ -1,18 +1,23 @@
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from django import forms
+
 from articles.models import Article
+from articles.models import Rating
+from articles.models import RatingStar
 from articles.models import Review
 
 
 class ArticleAdminForm(forms.ModelForm):
     """Форма с виджетом ckeditor"""
+
     content = forms.CharField(label="Текст статьи", widget=CKEditorUploadingWidget())
 
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = "__all__"
+
 
 class ReviewInline(admin.TabularInline):
     """Отзывы на странице публикации"""
@@ -58,10 +63,10 @@ class ArticleAdmin(admin.ModelAdmin):
         self.message_user(request, f"{message_bit}")
 
     publish.short_description = "Опубликовать"
-    publish.allowed_permissions = ('change',)
+    publish.allowed_permissions = ("change",)
 
     unpublish.short_description = "Снять с публикации"
-    unpublish.allowed_permissions = ('change',)
+    unpublish.allowed_permissions = ("change",)
 
 
 @admin.register(Review)
@@ -72,3 +77,13 @@ class ReviewAdmin(admin.ModelAdmin):
 
 admin.site.site_title = "MyBlog"
 admin.site.site_header = "MyBlog"
+
+
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    """Рейтинг"""
+
+    list_display = ("star", "article", "ip")
+
+
+admin.site.register(RatingStar)

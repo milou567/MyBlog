@@ -2,11 +2,11 @@
 {% block title %}MyBlog{% endblock title %}
 {% block content %}
 <div class="sub-title">
-    <h2>My Blog</h2>
+    <h2>Мой Блог</h2>
     <a href="{% url 'my_contact' %}"><i class="icon-envelope"></i></a>
     <form action="{% url 'search' %}" method="get" class="d-flex editContent">
         <input type="search"
-               placeholder="Введите название..."
+               placeholder="Введите название статьи..."
                name="q" class="form-control" required="">
         <button type="submit" class="btn1 btn">
             <span class="fa fa-search" aria-hidden="true"></span>
@@ -30,7 +30,7 @@
             <span>{{ article.pub_date }} / by <a href="#" target="_blank">{{ article.author }}</a></span>
         </div>
         <a href="{{ article.get_absolute_url }}"
-           class="button button-style button-anim fa fa-long-arrow-right"><span>Read More</span></a>
+           class="button button-style button-anim fa fa-long-arrow-right"><span>Подробнее</span></a>
     </div>
     <!-- Blog Post End -->
     {% endfor %}

@@ -13,14 +13,15 @@
 
 
         <div class="col-md-12 blog-post">
-        <div class="post-title">
-            <h1>{{ article.title }}</h1>
+            <div class="post-title">
+                <h1>{{ article.title }}</h1>
+            </div>
+            <div class="post-info">
+                <span>{{ article.pub_date }} / by <a href="{% url 'my_contact' %}"
+                                                     target="_blank">{{ article.author }}</a></span>
+            </div>
+            <p>{{article.content|safe}}</p>
         </div>
-        <div class="post-info">
-            <span>{{ article.pub_date }} / by <a href="#" target="_blank">{{ article.author }}</a></span>
-        </div>
-        <p>{{article.content|safe}}</p>
-         </div>
 
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at quam at orci
@@ -169,13 +170,27 @@
                 <h3>Article By <a href="#" target="_blank" data-toggle="tooltip"
                                   data-placement="top" title="Visit Alex Website">Alex
                     Parker</a></h3>
-                <p>You can use about author box when someone guest post on your blog, Lorem
-                    ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna ad minim veniam.</p>
+                <p>You can use about author box when someone guest post on your blog.</p>
             </div>
         </div>
         <!-- Post Author Bio Box End -->
 
+        <!-- Rating -->
+        <div class="post-info">
+            <form action="{% url 'add_rating' %}" method="post" name="rating">
+                <b class="post-info">Рейтинг:</b>
+                {% csrf_token %}
+                <input type="hidden" value="{{ article.id }}" name="article">
+                <span class="rating">
+                                    {% for k, v in star_form.fields.star.choices %}
+                                        <input id="rating{{ v }}" type="radio" name="star"
+                                               value="{{ k }}">
+                                        <label for="rating{{ v }}">{{ k }}</label>
+                                    {% endfor %}
+                                </span>
+                <span class="editContent">4.0</span>
+            </form>
+        </div>
 
         <!-- You May Also Like Start -->
         <div class="you-may-also-like margin-top-50 margin-bottom-50">
@@ -213,27 +228,25 @@
                         <form action="{% url 'add_review' article.id %}" method="post" id="formReview">
                             {% csrf_token %}
                             <input type="hidden" name="parent" id="contactparent" value="">
+
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="text" id="name" class="form-control"
-                                           placeholder="Your Name" name="name">
+                                    {{form.name}}
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input type="email" id="email" class="form-control"
-                                           placeholder="Your Email" name="email">
+                                    {{form.email}}
                                 </div>
                             </div>
 
                             <div class="col-sm-12">
                                 <div class="textarea-message form-group">
-                                    <textarea id="contactcomment" class="textarea-message form-control"
-                                              placeholder="Your Message" rows="5" name="text"></textarea>
+                                    {{form.text}}
                                 </div>
                             </div>
-
+                            {{form.captcha}}
                             <div class="text-center">
                                 <button type="submit" class="load-more-button">Send</button>
                             </div>

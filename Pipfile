@@ -19,6 +19,7 @@ djangorestframework = "*"
 django-cloudinary-storage = "*"
 gunicorn = "*"
 django-ckeditor = "*"
+django-recaptcha3 = "*"
 
 [dev-packages]
 

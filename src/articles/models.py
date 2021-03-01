@@ -20,7 +20,7 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f"{self.title} - {self.content[:30]}"
+        return f"{self.title} - {self.content[:10]}"
 
     def was_publeshed_recently(self):
         return self.pub_date >= (timezone.now() - datetime.timedelta(days=7))
@@ -59,3 +59,36 @@ class Review(models.Model):
     class Meta:
         verbose_name = "Отзыв"
         verbose_name_plural = "Отзывы"
+
+
+class RatingStar(models.Model):
+    """Звезда рейтинга"""
+
+    value = models.SmallIntegerField("Значение", default=0)
+
+    def __str__(self):
+        return f"{self.value}"
+
+    class Meta:
+        verbose_name = "Звезда рейтинга"
+        verbose_name_plural = "Звезды рейтинга"
+        ordering = ["-value"]
+
+
+class Rating(models.Model):
+    """Рейтинг"""
+
+    ip = models.CharField("IP адрес", max_length=15)
+    star = models.ForeignKey(
+        RatingStar, on_delete=models.CASCADE, verbose_name="звезда"
+    )
+    article = models.ForeignKey(
+        Article, on_delete=models.CASCADE, verbose_name="статья", related_name="ratings"
+    )
+
+    def __str__(self):
+        return f"{self.star} - {self.article}"
+
+    class Meta:
+        verbose_name = "Рейтинг"
+        verbose_name_plural = "Рейтинги"

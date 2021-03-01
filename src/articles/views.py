@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views.generic import DeleteView
 from django.views.generic import DetailView
@@ -6,7 +7,9 @@ from django.views.generic.base import View
 
 from articles.models import Article
 
+from .forms import RatingForm
 from .forms import ReviewForm
+from .models import Rating
 
 
 class ArticleListView(ListView):
@@ -26,6 +29,36 @@ class ArticleDetailView(DetailView):
     template_name = "articles/article_detail.html"
     slug_field = "url"
     context_object_name = "article"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["star_form"] = RatingForm()
+        context["form"] = ReviewForm()
+        return context
+
+
+class AddStarRating(View):
+    """Добавление рейтинга статье"""
+
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(",")[0]
+        else:
+            ip = request.META.get("REMOTE_ADDR")
+        return ip
+
+    def post(self, request):
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            Rating.objects.update_or_create(
+                ip=self.get_client_ip(request),
+                article_id=int(request.POST.get("article")),
+                defaults={"star_id": int(request.POST.get("star"))},
+            )
+            return HttpResponse(status=201)
+        else:
+            return HttpResponse(status=400)
 
 
 class AddReview(View):
