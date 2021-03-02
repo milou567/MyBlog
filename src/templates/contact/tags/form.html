@@ -1,0 +1,13 @@
+<!-- Subscribe Form Start -->
+<div class="col-md-8 col-md-offset-2">
+    <form action="{% url 'newsletter' %}" method="post">
+        <div class="subscribe-form margin-top-20">
+            {% csrf_token %}
+            {{ newsletter_form }}
+            <button class="submit-btn" type="submit">Submit</button>
+        </div>
+        <label class="mc-label"></label>
+    </form>
+
+</div>
+<!-- Subscribe Form End -->

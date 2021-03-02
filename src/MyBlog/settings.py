@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "about",
     "work",
     "contact",
+
     "snowpenguin.django.recaptcha3",
 ]
 
