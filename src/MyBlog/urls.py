@@ -22,11 +22,11 @@ from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("ckeditor/", include("ckeditor_uploader.urls")),
     path("", include("articles.urls")),
     path("about/", include("about.urls")),
     path("work/", include("work.urls")),
     path("contact/", include("contact.urls")),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
