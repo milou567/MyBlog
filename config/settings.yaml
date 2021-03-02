@@ -14,7 +14,7 @@ default:
   DIRS_TEMPLATES:
     - src/project/templates/
   HOST: ""
-  MODE_DEBUG: True
+  MODE_DEBUG: true
   MODE_PROFILING: false
   PORT: -1
   PROJECT_NAME: ""
@@ -39,6 +39,6 @@ ci:
 
 
 heroku:
-  MODE_DEBUG: true
+  MODE_DEBUG: false
   HOST: "pitrucha.herokuapp.com"
   VENV_SYNTHETIC: true
