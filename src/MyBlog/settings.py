@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "cloudinary_storage",
     "cloudinary",
     "ckeditor_uploader",
@@ -40,8 +41,9 @@ INSTALLED_APPS = [
     "about",
     "work",
     "contact",
-
     "snowpenguin.django.recaptcha3",
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +77,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "MyBlog.wsgi.application"
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -116,6 +122,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_REDIRECT_URL = "/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -283,3 +294,5 @@ RECAPTCHA_PUBLIC_KEY = "6LcJfW0aAAAAAKPHjjrlJeX4cUvh066GMeiZniJD"
 RECAPTCHA_PRIVATE_KEY = "6LcJfW0aAAAAAGIyo9vJZK-Te5efzwKr02-ti_kn"
 RECAPTCHA_DEFAULT_ACTION = "generic"
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SITE_ID = 1

@@ -8,3 +8,7 @@ class Newsletter(models.Model):
 
     def __str__(self):
         return self.email
+
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
