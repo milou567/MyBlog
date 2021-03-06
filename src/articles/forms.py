@@ -15,9 +15,9 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ("name", "email", "text", "captcha")
         widgets = {
-            "name": forms.TextInput(attrs={"class": "form-control border"}),
-            "email": forms.EmailInput(attrs={"class": "form-control border"}),
-            "text": forms.Textarea(attrs={"class": "form-control border"}),
+            "name": forms.TextInput(attrs={"class": "form-control border", "placeholder": "Ваше имя..."}),
+            "email": forms.EmailInput(attrs={"class": "form-control border", "placeholder": "Ваш email..."}),
+            "text": forms.Textarea(attrs={"class": "form-control border", "placeholder": "Комментарий..."}),
         }
 
 

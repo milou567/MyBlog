@@ -13,6 +13,7 @@ class Article(models.Model):
 
     title = models.CharField("название статьи", max_length=200)
     content = models.TextField("текст статьи")
+    quote = models.TextField("цитата", null=True)
     pub_date = models.DateTimeField("дата публикации", auto_now=True)
     art_image = models.ImageField("Изображение", upload_to="articles/")
     url = models.SlugField(max_length=130, null=True)

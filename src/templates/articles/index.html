@@ -8,9 +8,6 @@
         <input type="search"
                placeholder="Введите название статьи..."
                name="q" class="form-control" required="">
-        <button type="submit" class="btn1 btn">
-            <span class="fa fa-search" aria-hidden="true"></span>
-        </button>
     </form>
 </div>
 
@@ -21,10 +18,10 @@
     <!-- Blog Post Start -->
     <div class="col-md-12 blog-post">
         <div class="post-image">
-            <img src="{{ article.art_image.url }}" alt="">
+            <a href="{{ article.get_absolute_url }}"><img src="{{ article.art_image.url }}" alt=""></a>
         </div>
         <div class="post-title">
-            <h1>{{ article.title }}</h1>
+            <a href="{{ article.get_absolute_url }}"><h1>{{ article.title }}</h1></a>
         </div>
         <div class="post-info">
             <span>{{ article.pub_date }} / by <a href="#" target="_blank">{{ article.author }}</a></span>
