@@ -39,6 +39,6 @@ ci:
 
 
 heroku:
-  MODE_DEBUG: false
+  MODE_DEBUG: true
   HOST: "pitrucha.herokuapp.com"
   VENV_SYNTHETIC: true
