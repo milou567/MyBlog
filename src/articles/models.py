@@ -39,7 +39,7 @@ class Article(models.Model):
 class Image(models.Model):
     """Картинки для статьи"""
 
-    image = models.ImageField("Изображение", upload_to="articles/image/")
+    image = models.ImageField("Картинка", upload_to="articles/image/")
     article = models.ForeignKey('Article', on_delete=models.CASCADE)
 
     class Meta:
