@@ -3,7 +3,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from articles.models import Article
+from articles.models import Article, Image
 from articles.models import Rating
 from articles.models import RatingStar
 from articles.models import Review
@@ -87,3 +87,5 @@ class RatingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(RatingStar)
+
+admin.site.register(Image)

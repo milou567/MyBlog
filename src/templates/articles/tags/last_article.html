@@ -1,0 +1,12 @@
+<!-- Last Article -->
+<div class="you-may-also-like margin-top-50 margin-bottom-50">
+    <h3>Последние добавленые</h3>
+    <div class="row">
+    {% for article in last_article %}
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <a href="{{ article.get_absolute_url }}"><p>{{ article.title }}</p></a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+<!-- Last Article End -->

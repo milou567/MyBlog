@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}{{ article.url }}{% endblock title %}
 {% block content %}
+{% load article_tags %}
 <div class="sub-title">
     <a href="{% url 'all_articles' %}" title="Go to Home Page"><h2>Back Home</h2></a>
     <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>
@@ -24,27 +25,15 @@
         </div>
 
 
-<!--        &lt;!&ndash; Post Image Gallery Start &ndash;&gt;-->
-<!--        <div class="row margin-top-40 margin-bottom-40">-->
-
-<!--            <div class="col-md-4 col-sm-6 col-xs-12">-->
-<!--                <a href="{% static 'images/blog/7.jpg' %}" class="image-popup" title="image Title">-->
-<!--                    <img src="{% static 'images/blog/7.jpg' %}" class="img-responsive" alt="">-->
-<!--                </a>-->
-<!--            </div>-->
-
-<!--            <div class="col-md-4 col-sm-6 col-xs-12">-->
-<!--                <a href="{% static 'images/blog/5.jpg' %}" class="image-popup" title="image Title">-->
-<!--                    <img src="{% static 'images/blog/5.jpg' %}" class="img-responsive" alt="">-->
-<!--                </a>-->
-<!--            </div>-->
-
-<!--            <div class="col-md-4 col-sm-6 col-xs-12">-->
-<!--                <a href="{% static 'images/blog/6.jpg' %}" class="image-popup" title="image Title">-->
-<!--                    <img src="{% static 'images/blog/6.jpg' %}" class="img-responsive" alt="">-->
-<!--                </a>-->
-<!--            </div>-->
-
+        <!-- Post Image Gallery Start -->
+        <div class="row margin-top-40 margin-bottom-40">
+            {% for image in article.image_set.all %}
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <a href="{{ image.image.url }}" class="image-popup" title="image Title">
+                    <img src="{{ image.image.url }}" class="img-responsive" alt="">
+                </a>
+            </div>
+            {% endfor %}
         </div>
         <!-- Post Image Gallery End -->
 
@@ -118,7 +107,7 @@
         <!-- Rating -->
         <div class="post-info">
             <form action="{% url 'add_rating' %}" method="post" name="rating">
-                <b class="post-info">Рейтинг:</b>
+                <b class="post-info">Оцени статью</b>
                 {% csrf_token %}
                 <input type="hidden" value="{{ article.id }}" name="article">
                 <span class="rating">
@@ -132,30 +121,7 @@
             </form>
         </div>
 
-<!--        &lt;!&ndash; You May Also Like Start &ndash;&gt;-->
-<!--        <div class="you-may-also-like margin-top-50 margin-bottom-50">-->
-<!--            <h3>You may also like</h3>-->
-<!--            <div class="row">-->
-
-<!--                <div class="col-md-4 col-sm-6 col-xs-12">-->
-<!--                    <a href="single.html"><p>Make mailchimp singup form working with ajax using-->
-<!--                        jquery plugin</p></a>-->
-<!--                </div>-->
-
-<!--                <div class="col-md-4 col-sm-6 col-xs-12">-->
-<!--                    <a href="single.html"><p>How to design elegant e-mail newsletter in html for-->
-<!--                        wish christmas to your subscribers?</p></a>-->
-<!--                </div>-->
-
-<!--                <div class="col-md-4 col-sm-6 col-xs-12">-->
-<!--                    <a href="single.html"><p>How to customize a wordpress theme entirely from-->
-<!--                        scratch using a child theme?</p></a>-->
-<!--                </div>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; You May Also Like End &ndash;&gt;-->
-
+        {% get_last_article %}
 
         <!-- Post Comment (Disqus) Start -->
         <div id="comment" class="comment">

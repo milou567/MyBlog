@@ -36,6 +36,16 @@ class Article(models.Model):
         verbose_name_plural = "Статьи"
 
 
+class Image(models.Model):
+    """Картинки для статьи"""
+
+    image = models.ImageField("Изображение", upload_to="articles/image/")
+    article = models.ForeignKey('Article', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Картинка"
+        verbose_name_plural = "Картинки"
+
 class Review(models.Model):
     """Отзывы"""
 

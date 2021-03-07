@@ -7,3 +7,4 @@ register = template.Library()
 @register.inclusion_tag("contact/tags/form.html")
 def newsletter_form():
     return {"newsletter_form": NewsletterForm()}
+
