@@ -1,6 +1,6 @@
 from django import forms
 from snowpenguin.django.recaptcha3.fields import ReCaptchaField
-from .models import Newsletter
+from .models import Newsletter, AddOrder
 
 
 class NewsletterForm(forms.ModelForm):
@@ -16,3 +16,11 @@ class NewsletterForm(forms.ModelForm):
         labels = {
             "email": ''
         }
+
+
+class OrderForm(forms.ModelForm):
+    """Форма принятия заказа"""
+
+    class Meta:
+        model = AddOrder
+        fields = ("name", "email", "website", "country", "text")

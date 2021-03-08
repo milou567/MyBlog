@@ -3,10 +3,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from articles.models import Article, Image
-from articles.models import Rating
-from articles.models import RatingStar
-from articles.models import Review
+from articles.models import Article, Image, Rating, RatingStar, Review
 
 
 class ArticleAdminForm(forms.ModelForm):

@@ -14,7 +14,7 @@ class Article(models.Model):
     title = models.CharField("название статьи", max_length=200)
     content = models.TextField("текст статьи")
     pub_date = models.DateTimeField("дата публикации", auto_now=True)
-    art_image = models.ImageField("Изображение", upload_to="articles/")
+    art_image = models.ImageField("изображение", upload_to="articles/")
     url = models.SlugField(max_length=130, null=True)
     draft = models.BooleanField("черновик", default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

@@ -117,9 +117,7 @@
         </div>
 
         <div align="center">
-            <script type="text/javascript" charset="utf-8"
-                    async
-                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab0bd5bf5b12b21037ffd78bdae2e50b1be857e711e5574a9f1a53d813292513e&amp;width=532&amp;height=441&amp;lang=ru_RU&amp;scroll=true"></script>
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A568721b0edbb841c31f6680a97c7318ad1fcdf2d5acd628e6a3e9fbe5210e642&amp;width=320&amp;height=240&amp;lang=ru_RU&amp;scroll=true"></script>
         </div>
 
         <!-- Testimonials Start -->
@@ -133,48 +131,48 @@
             <div class="col-md-12">
 
                 <div class="row">
-                    <form>
-
+                    <form action="{% url 'add_order' user.username %}" method="post">
+                        {% csrf_token %}
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" id="name" class="form-control" placeholder="Your Name">
+                                <input type="text" id="name" class="form-control" value="{{ user.username }}" name="name">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Your Email">
+                                <input type="email" id="email" class="form-control" value="{{ user.email }}" name="email">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" id="website" class="form-control" placeholder="Your Website">
+                                <input type="text" id="website" class="form-control" placeholder="Ваш сайт..." name="website">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" id="address" class="form-control" placeholder="Where are You From?">
+                                <input type="text" id="address" class="form-control" placeholder="Страна..." name="country">
                             </div>
                         </div>
 
-                        <div class="col-sm-12">
-                            <select id="subject" class="form-group form-control">
-                                <option value="" selected disabled>Subject</option>
-                                <option>Website Design & Development</option>
-                                <option>Wordpress Development</option>
-                                <option>Search Engine Optimization</option>
-                                <option>Mobile Website</option>
-                                <option>I Want to General Talk</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
+<!--                        <div class="col-sm-12">-->
+<!--                            <select id="subject" class="form-group form-control">-->
+<!--                                <option value="" selected disabled>Subject</option>-->
+<!--                                <option>Website Design & Development</option>-->
+<!--                                <option>Wordpress Development</option>-->
+<!--                                <option>Search Engine Optimization</option>-->
+<!--                                <option>Mobile Website</option>-->
+<!--                                <option>I Want to General Talk</option>-->
+<!--                                <option>Other</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
 
                         <div class="col-sm-12">
                             <div class="textarea-message form-group">
-                                <textarea id="message" class="textarea-message form-control" placeholder="Your Message"
-                                          rows="5"></textarea>
+                                <textarea id="message" class="textarea-message form-control" placeholder="Комментарий..."
+                                          rows="5" name="text"></textarea>
                             </div>
                         </div>
 
