@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     "about",
     "work",
     "contact",
+    "user_profile",
     "snowpenguin.django.recaptcha3",
     'allauth',
     'allauth.account',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

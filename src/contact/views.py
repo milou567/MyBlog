@@ -1,4 +1,5 @@
-from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from django.views.generic import CreateView
 from django.views.generic.base import View
@@ -26,15 +27,18 @@ class NewsletterView(CreateView):
 
 class AddOrderView(View):
     """Заказы"""
-
-    def post(self, request, username):
-        print(request.POST)
-        form = OrderForm(request.POST)
-        user = User.objects.get(username=username)
-        print(user)
-        if form.is_valid():
-            form.save(commit=False)
-            form.author = user
-            print(form.author)
-            form.save()
-        return redirect("/")
+    if User.username is not None:
+        def post(self, request, username):
+            print(request.POST)
+            form = OrderForm(request.POST)
+            user = User.objects.get(username=username)
+        # if user is not None:
+            print(user)
+            if form.is_valid():
+                form.save(commit=False)
+                form.author = user
+                print(form.author)
+                form.save()
+        # else:
+        #     return render(request, 'accounts/login.html')
+            return redirect("/")

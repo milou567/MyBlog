@@ -92,14 +92,13 @@
         <div class="about-author margin-top-70 margin-bottom-50">
 
             <div class="picture">
-                <img src="{% static 'images/blog/author.png' %}" class="img-responsive" alt="">
+                <img src="{{ user.profile.avatar.url }}" class="img-responsive" alt="">
             </div>
 
             <div class="c-padding">
                 <h3>Article By <a href="{% url 'my_contact' %}" target="_blank" data-toggle="tooltip"
-                                  data-placement="top" title="Visit Alex Website">Alex
-                    Parker</a></h3>
-                <p>You can use about author box when someone guest post on your blog.</p>
+                                  data-placement="top" title="Visit Alex Website">{{ article.author }}</a></h3>
+                <p>Вы можете использовать поле «Об авторе», когда кто-то пишет в вашем блоге в статусе гостя.</p>
             </div>
         </div>
         <!-- Post Author Bio Box End -->
@@ -160,7 +159,7 @@
                     </div>
                     {% for review in article.get_review %}
                     <div class="media py-5">
-                        <img src="{% static 'images/pic/te1.jpg' %}" class="mr-3 img-circle" alt="image">
+                        <img src="{{ user.profile.avatar.url }}" width="80" height="80" class="mr-3 img-circle" alt="image">
                         <div class="media-body mt-4">
                             <h5 class="mt-0 editContent">
                                 {{ review.name }}

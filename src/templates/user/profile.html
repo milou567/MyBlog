@@ -1,0 +1,54 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+{% block title %}Profile {{ user.username }}{% endblock title %}
+{% block content %}
+<div class="sub-title">
+    <a href="{% url 'all_articles' %}" title="Go to Home Page"><h2>Back Home</h2></a>
+    <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>
+</div>
+
+
+    <div class="container">
+        <div class="row">
+            <img src="{{ user.profile.avatar.url }}" class="image-popup" title="image Title"><br>
+            <b>{{ user.profile.user }}</b>
+            <p>Страна: {{ user.profile.country }}</p>
+            <p>Телефон: {{ user.profile.phone }}</p>
+        </div>
+    <br>
+    <h1>User articles:</h1>
+        {% for article in articles %}
+            <div class="card" style="width: 18rem;">
+                  <img src="https://www.imgonline.com.ua/examples/bee-on-daisy.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ article.title }}</h5>
+                    <p class="card-text">{{ article.content }}</p>
+<!--                    <a href="{% url 'get-articles' pk=article.pk %}" class="btn btn-primary">Go somewhere</a>-->
+                  </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+
+{% block script %}
+<!-- Syntax Highlighter Javascript File  -->
+<script type="text/javascript" src="{% static 'js/syntax/shCore.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushCss.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushJScript.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushPerl.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushPhp.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushPlain.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushPython.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushRuby.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushSql.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushVb.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/syntax/shBrushXml.js' %}"></script>
+
+<!-- Syntax Highlighter Call Function -->
+<script type="text/javascript">
+    SyntaxHighlighter.config.clipboardSwf = "{% static 'js/syntax/clipboard.swf' %}";
+    SyntaxHighlighter.all();
+</script>
+
+{% endblock script %}
