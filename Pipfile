@@ -21,6 +21,7 @@ gunicorn = "*"
 django-ckeditor = "*"
 django-recaptcha3 = "*"
 django-allauth = "*"
+django-filter = "*"
 
 [dev-packages]
 

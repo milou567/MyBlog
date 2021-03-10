@@ -57,10 +57,10 @@ class Review(models.Model):
         verbose_name="Родитель",
         on_delete=models.SET_NULL,
         blank=True,
-        null=True,
+        null=True, related_name="children"
     )
     article = models.ForeignKey(
-        Article, verbose_name="публикация", on_delete=models.CASCADE
+        Article, verbose_name="публикация", on_delete=models.CASCADE, related_name="reviews"
     )
 
     def __str__(self):

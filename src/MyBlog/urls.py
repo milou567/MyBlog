@@ -29,6 +29,7 @@ urlpatterns = [
     path("contact/", include("contact.urls")),
     path("profile/", include("user_profile.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
+    path('api/', include('api.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
